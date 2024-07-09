@@ -1,0 +1,48 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin" // Keep this plugin as it is for Flutter
+
+    // Add the Google services Gradle plugin
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace = "com.example.project2"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.project2"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutterVersionCode.toInteger()
+        versionName = flutterVersionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug // Configure your signing here
+        }
+    }
+}
+
+flutter {
+    source = "../.." // Keep your existing Flutter configuration as it is
+}
+
+dependencies {
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:33.1.1')
+
+    // Add the dependencies for Firebase products you want to use
+    implementation 'com.google.firebase:firebase-analytics' // Example Firebase product
+
+    // Add more Firebase dependencies as needed
+    // Check https://firebase.google.com/docs/android/setup#available-libraries for available libraries
+}
